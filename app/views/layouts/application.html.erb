@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<h1></h1> <%= logged_in? ? current_user.user_name : ""  %>
 <html>
 <head>
   <title>NinetyNineCatsDay1</title>
@@ -8,6 +9,11 @@
 </head>
 <body>
 
+<% if current_user %>
+  <%= button_to "Log Out", new_session_url, method: :delete %>
+<% else %>
+  <%= button_to "Log In", new_session_url, method: :get%>
+<% end %>
 <%= yield %>
 
 </body>
