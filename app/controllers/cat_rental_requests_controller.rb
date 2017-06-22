@@ -23,6 +23,14 @@ class CatRentalRequestsController < ApplicationController
     @rental_request = CatRentalRequest.new
   end
 
+  def cat_owner?
+    unless current_user.cats.find_by(id: current_cat.id)
+      flash[:errors] = "It's not your damn cat!"
+      redirect_to cats_url
+    end
+  end
+
+
   private
   def current_cat_rental_request
     @rental_request ||=
